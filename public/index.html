@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Should We Be Talking About?</title>
+<meta name="description" content="The DOW tells us what to talk about, according to AG Pam Bondi.">
+<meta property="og:title" content="What Should We Be Talking About?">
+<meta property="og:description" content="AG Bondi says when the DOW is above 50K, that's what we should discuss. Not Jeffrey Epstein. Let's check.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-epstein: #0a0a0a;
+    --bg-dow: #003d1a;
+    --accent-red: #cc2936;
+    --accent-green: #00cc5e;
+    --text-primary: #f0ede6;
+    --text-muted: #8a8680;
+    --gold: #c9a84c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-epstein);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background 1.2s ease;
+  }
+
+  body.dow-mode {
+    background: var(--bg-dow);
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+    position: relative;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
+  }
+
+  .header .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    line-height: 1.05;
+    margin-bottom: 0.5rem;
+  }
+
+  .header .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .header .subtitle em {
+    color: var(--text-primary);
+    font-style: normal;
+  }
+
+  /* The Big Answer */
+  .answer-section {
+    text-align: center;
+    margin: 3rem 0;
+    position: relative;
+  }
+
+  .answer-section .dow-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .dow-value .price {
+    font-weight: 700;
+    color: var(--text-primary);
+    transition: color 0.5s ease;
+  }
+
+  .dow-value .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background 0.5s ease;
+  }
+
+  .dow-value .status-dot.above { background: var(--accent-green); box-shadow: 0 0 8px var(--accent-green); }
+  .dow-value .status-dot.below { background: var(--accent-red); box-shadow: 0 0 8px var(--accent-red); }
+
+  .dow-change {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .dow-change.up { color: var(--accent-green); }
+  .dow-change.down { color: var(--accent-red); }
+
+  .answer-box {
+    border: 2px solid;
+    border-radius: 4px;
+    padding: 3rem 2rem;
+    position: relative;
+    transition: border-color 1s ease, background 1s ease;
+  }
+
+  .answer-box.epstein-mode {
+    border-color: var(--accent-red);
+    background: rgba(204, 41, 54, 0.06);
+  }
+
+  .answer-box.dow-answer-mode {
+    border-color: var(--accent-green);
+    background: rgba(0, 204, 94, 0.06);
+  }
+
+  .should-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .answer-text {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 8vw, 5rem);
+    line-height: 1;
+    transition: color 0.5s ease;
+  }
+
+  .answer-text.epstein { color: var(--accent-red); }
+  .answer-text.dow { color: var(--accent-green); }
+
+  .answer-subtext {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-top: 1.5rem;
+    line-height: 1.6;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .answer-subtext em {
+    color: var(--text-primary);
+    font-style: normal;
+  }
+
+  /* Quote Section */
+  .quote-section {
+    margin: 3rem 0;
+    padding: 2rem;
+    border-left: 3px solid var(--gold);
+    background: rgba(201, 168, 76, 0.04);
+  }
+
+  .quote-section blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    font-style: italic;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .quote-section .attribution {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+  }
+
+  /* Ticker strip */
+  .ticker-strip {
+    margin: 2.5rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(240, 237, 230, 0.08);
+    border-bottom: 1px solid rgba(240, 237, 230, 0.08);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .ticker-inner {
+    display: flex;
+    gap: 3rem;
+    animation: tickerScroll 25s linear infinite;
+    white-space: nowrap;
+  }
+
+  @keyframes tickerScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .ticker-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+
+  .ticker-item .highlight {
+    color: var(--accent-red);
+    font-weight: 700;
+  }
+
+  /* Stats */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border: 1px solid rgba(240, 237, 230, 0.08);
+    border-radius: 4px;
+    background: rgba(240, 237, 230, 0.02);
+  }
+
+  .stat-card .stat-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-card .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 2rem 0;
+    border-top: 1px solid rgba(240, 237, 230, 0.06);
+  }
+
+  .footer p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  .footer a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  /* Loading state */
+  .loading-pulse {
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* Flash animation on update */
+  @keyframes flashIn {
+    0% { opacity: 0; transform: scale(0.95); }
+    50% { opacity: 1; transform: scale(1.02); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  .flash-in {
+    animation: flashIn 0.6s ease-out;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .stats-row { grid-template-columns: 1fr; }
+    .answer-box { padding: 2rem 1.5rem; }
+    .quote-section { padding: 1.5rem; }
+  }
+
+  /* Red line decoration */
+  .red-line {
+    width: 60px;
+    height: 3px;
+    background: var(--accent-red);
+    margin: 1.5rem auto;
+    transition: background 0.5s ease;
+  }
+
+  body.dow-mode .red-line {
+    background: var(--accent-green);
+  }
+
+  /* Blinking live indicator */
+  .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent-red);
+    border-radius: 50%;
+    animation: blink 1.5s ease-in-out infinite;
+  }
+
+  body.dow-mode .live-dot {
+    background: var(--accent-green);
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  .market-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 0.75rem;
+  }
+
+  .error-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent-red);
+    text-align: center;
+    margin-top: 0.5rem;
+    display: none;
+  }
+
+  /* Countdown to next refresh */
+  .refresh-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(240, 237, 230, 0.06);
+    margin-top: 0.5rem;
+    border-radius: 1px;
+    overflow: hidden;
+  }
+
+  .refresh-bar-inner {
+    height: 100%;
+    background: var(--text-muted);
+    width: 100%;
+    transition: width 30s linear;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="label">According to Attorney General Pam Bondi</div>
+    <h1>What Should We<br>Be Talking About?</h1>
+    <div class="red-line"></div>
+    <p class="subtitle">
+      On February 11, 2026, when asked about Jeffrey Epstein's co-conspirators, 
+      AG Bondi responded: <em>"The Dow is over 50,000 right now. That's what we should be talking about."</em>
+    </p>
+  </div>
+
+  <div class="answer-section">
+    <div class="live-indicator">
+      <span class="live-dot"></span>
+      <span id="live-label">Connecting...</span>
+    </div>
+    <div class="dow-value">
+      DOW: <span class="price loading-pulse" id="dow-price">Loading...</span>
+      <span class="status-dot below" id="status-dot"></span>
+    </div>
+    <div class="dow-change" id="dow-change"></div>
+
+    <div class="answer-box epstein-mode" id="answer-box">
+      <div class="should-label">We should be talking about</div>
+      <div class="answer-text epstein flash-in" id="answer-text">JEFFREY EPSTEIN</div>
+      <p class="answer-subtext" id="answer-subtext">
+        The DOW is <em>below</em> 50,000. Per Bondi's own logic, we should not be talking about the stock market. 
+        So let's talk about holding Epstein's co-conspirators accountable.
+      </p>
+    </div>
+    <div class="market-note" id="market-note">Fetching live data...</div>
+    <div class="error-note" id="error-note"></div>
+    <div class="refresh-bar"><div class="refresh-bar-inner" id="refresh-bar"></div></div>
+  </div>
+
+  <div class="quote-section">
+    <blockquote>
+      "The Dow is over 50,000 right now. The S&P at almost 7,000, and the Nasdaq smashing records. 
+      That's what we should be talking about."
+    </blockquote>
+    <div class="attribution">
+      — AG Pam Bondi, House Judiciary Committee Hearing, Feb 11, 2026
+      <br>When asked how many Epstein co-conspirators she had indicted
+    </div>
+  </div>
+
+  <div class="ticker-strip">
+    <div class="ticker-inner" id="ticker">
+      <span class="ticker-item">DOW THRESHOLD: 50,000</span>
+      <span class="ticker-item">CO-CONSPIRATORS INDICTED: <span class="highlight">0</span></span>
+      <span class="ticker-item">EPSTEIN SURVIVORS AT HEARING IGNORED: <span class="highlight">ALL</span></span>
+      <span class="ticker-item">DOJ FILES RELEASED: ~3.5 MILLION (HEAVILY REDACTED)</span>
+      <span class="ticker-item">FILES STILL UNRELEASED: ~2.5 MILLION</span>
+      <span class="ticker-item">VICTIMS' INFO IMPROPERLY EXPOSED: <span class="highlight">YES</span></span>
+      <span class="ticker-item">PERPETRATORS' NAMES REDACTED: <span class="highlight">YES</span></span>
+      <span class="ticker-item">DOW THRESHOLD: 50,000</span>
+      <span class="ticker-item">CO-CONSPIRATORS INDICTED: <span class="highlight">0</span></span>
+      <span class="ticker-item">EPSTEIN SURVIVORS AT HEARING IGNORED: <span class="highlight">ALL</span></span>
+      <span class="ticker-item">DOJ FILES RELEASED: ~3.5 MILLION (HEAVILY REDACTED)</span>
+      <span class="ticker-item">FILES STILL UNRELEASED: ~2.5 MILLION</span>
+      <span class="ticker-item">VICTIMS' INFO IMPROPERLY EXPOSED: <span class="highlight">YES</span></span>
+      <span class="ticker-item">PERPETRATORS' NAMES REDACTED: <span class="highlight">YES</span></span>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-value" id="days-above">—</div>
+      <div class="stat-label">Days DOW closed above 50K</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color: var(--accent-red)">0</div>
+      <div class="stat-label">Co-conspirators indicted</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" id="distance">—</div>
+      <div class="stat-label">Distance from 50,000</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>
+      This site checks the DOW Jones Industrial Average and applies Attorney General Bondi's 
+      own standard for what America should be discussing.<br>
+      Data updates every 30 seconds during market hours via DIA ETF.
+      <br><br>
+      The Epstein files contain evidence of crimes against over 1,000 victims. 
+      <br>Zero co-conspirators have been indicted.
+    </p>
+  </div>
+
+</div>
+
+<script>
+  const THRESHOLD = 50000;
+  const REFRESH_INTERVAL = 30000; // 30 seconds
+  let refreshTimer = null;
+  let lastState = null;
+
+  // Known closing data for "days above 50K" stat
+  const closesAbove50K = 4; // Feb 6, 7, 10, 11 closed above 50K
+  document.getElementById('days-above').textContent = closesAbove50K;
+
+  function formatNum(n) {
+    return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function isMarketOpen() {
+    const now = new Date();
+    const est = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+    const day = est.getDay();
+    const hour = est.getHours();
+    const min = est.getMinutes();
+    const timeInMinutes = hour * 60 + min;
+    // Market open Mon-Fri, 9:30 AM - 4:00 PM ET
+    return day >= 1 && day <= 5 && timeInMinutes >= 570 && timeInMinutes < 960;
+  }
+
+  function updateDisplay(data) {
+    const price = data.dow;
+    const priceEl = document.getElementById('dow-price');
+    const dotEl = document.getElementById('status-dot');
+    const answerBox = document.getElementById('answer-box');
+    const answerText = document.getElementById('answer-text');
+    const answerSubtext = document.getElementById('answer-subtext');
+    const distanceEl = document.getElementById('distance');
+    const changeEl = document.getElementById('dow-change');
+    const body = document.body;
+
+    priceEl.textContent = formatNum(price);
+    priceEl.classList.remove('loading-pulse');
+
+    // Show change
+    if (data.change !== undefined) {
+      const sign = data.change >= 0 ? '+' : '';
+      changeEl.textContent = `${sign}${formatNum(data.change)} (${sign}${data.changePercent}%)`;
+      changeEl.className = 'dow-change ' + (data.change >= 0 ? 'up' : 'down');
+    }
+
+    const diff = price - THRESHOLD;
+    const absDiff = formatNum(Math.abs(diff));
+
+    const newState = price >= THRESHOLD ? 'dow' : 'epstein';
+
+    if (price >= THRESHOLD) {
+      dotEl.className = 'status-dot above';
+      answerBox.className = 'answer-box dow-answer-mode';
+      answerText.className = 'answer-text dow' + (newState !== lastState ? ' flash-in' : '');
+      answerText.textContent = 'THE DOW';
+      answerSubtext.innerHTML = `The DOW is <em>above</em> 50,000. Per AG Bondi, this is what we should be talking about. Not Jeffrey Epstein. Not his co-conspirators. Not the 1,000+ victims. The DOW.`;
+      distanceEl.textContent = '+' + absDiff;
+      distanceEl.style.color = 'var(--accent-green)';
+      body.classList.add('dow-mode');
+    } else {
+      dotEl.className = 'status-dot below';
+      answerBox.className = 'answer-box epstein-mode';
+      answerText.className = 'answer-text epstein' + (newState !== lastState ? ' flash-in' : '');
+      answerText.textContent = 'JEFFREY EPSTEIN';
+      answerSubtext.innerHTML = `The DOW is <em>below</em> 50,000. Per Bondi's own logic, we should not be talking about the stock market. So let's talk about holding Epstein's co-conspirators accountable.`;
+      distanceEl.textContent = '-' + absDiff;
+      distanceEl.style.color = 'var(--accent-red)';
+      body.classList.remove('dow-mode');
+    }
+
+    lastState = newState;
+  }
+
+  function startRefreshBar() {
+    const bar = document.getElementById('refresh-bar');
+    bar.style.transition = 'none';
+    bar.style.width = '100%';
+    // Force reflow
+    bar.offsetHeight;
+    bar.style.transition = `width ${REFRESH_INTERVAL / 1000}s linear`;
+    bar.style.width = '0%';
+  }
+
+  async function fetchDow() {
+    const noteEl = document.getElementById('market-note');
+    const errorEl = document.getElementById('error-note');
+    const liveLabel = document.getElementById('live-label');
+
+    try {
+      const res = await fetch('/api/dow');
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const data = await res.json();
+
+      if (data.error || data.dow === null) {
+        throw new Error(data.error || 'No data returned');
+      }
+
+      updateDisplay(data);
+
+      const open = isMarketOpen();
+      liveLabel.textContent = open ? 'Live' : 'Market Closed';
+
+      const time = new Date();
+      const timeStr = time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      noteEl.textContent = `${open ? 'Live' : 'Last available'} · Updated ${timeStr} · via DIA ETF`;
+
+      errorEl.style.display = 'none';
+      startRefreshBar();
+    } catch (err) {
+      console.error('Fetch error:', err);
+      errorEl.textContent = `Connection issue: ${err.message}. Retrying...`;
+      errorEl.style.display = 'block';
+      liveLabel.textContent = 'Reconnecting...';
+
+      // If we haven't loaded any data yet, show fallback
+      if (lastState === null) {
+        updateDisplay({
+          dow: 49451.98,
+          change: -669.42,
+          changePercent: -1.34,
+        });
+        noteEl.textContent = 'Using last known close: Feb 12, 49,451.98';
+      }
+    }
+  }
+
+  // Initial fetch
+  fetchDow();
+
+  // Refresh every 30 seconds
+  setInterval(fetchDow, REFRESH_INTERVAL);
+</script>
+
+</body>
+</html>
