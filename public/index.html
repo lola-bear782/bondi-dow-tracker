@@ -552,9 +552,9 @@
     if (price >= THRESHOLD) {
       dotEl.className = 'status-dot above';
       answerBox.className = 'answer-box dow-answer-mode';
-      answerText.className = 'answer-text dow' + (newState !== lastState ? ' flash-in' : '');
-      answerText.textContent = 'THE DOW';
-      answerSubtext.innerHTML = `The DOW is <em>above</em> 50,000. Per AG Bondi, this is what we should be talking about. Not Jeffrey Epstein. Not his co-conspirators. Not the 1,000+ victims. The DOW.`;
+      answerText.className = 'answer-text epstein' + (newState !== lastState ? ' flash-in' : '');
+      answerText.textContent = 'STILL EPSTEIN';
+      answerSubtext.innerHTML = `Congrats, the DOW is above 50,000. AG Bondi says <em>"that's what we should be talking about."</em> No. The stock market doesn't erase 1,000+ victims. We should still be talking about Jeffrey Epstein. Indict the co-conspirators. Convict those responsible.`;
       distanceEl.textContent = '+' + absDiff;
       distanceEl.style.color = 'var(--accent-green)';
       body.classList.add('dow-mode');
